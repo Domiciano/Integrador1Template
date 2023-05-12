@@ -5,10 +5,13 @@ import edu.co.icesi.banner.entity.Teacher;
 import edu.co.icesi.banner.repositories.CourseRepository;
 import edu.co.icesi.banner.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@CrossOrigin(maxAge = 3600)
 public class EchoController {
 
     @Autowired
@@ -16,6 +19,14 @@ public class EchoController {
 
     @Autowired
     CourseRepository courseRepository;
+
+
+    @GetMapping(value = "courses/all", produces = "application/json")
+    public ResponseEntity<?> getCourses(){
+        return ResponseEntity.status(200)
+                .body(courseRepository.findAll());
+    }
+
 
     @GetMapping("echo")
     public String echo(){

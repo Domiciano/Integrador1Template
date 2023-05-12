@@ -1,6 +1,8 @@
 package edu.co.icesi.banner.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class Course {
 
     @ManyToOne
     @JoinColumn(name = "teacherid")
+    @JsonManagedReference
     private Teacher teacher;
 
     public Long getId() {

@@ -1,5 +1,6 @@
 package edu.co.icesi.banner.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -17,7 +18,7 @@ public class Teacher {
     private String faculty;
 
     @OneToMany(mappedBy = "teacher") //Nombre de la clase
-    @JsonIgnore
+    @JsonBackReference
     private List<Course> courses;
 
     public List<Course> getCourses() {
